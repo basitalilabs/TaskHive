@@ -26,19 +26,8 @@ app.use(cors({
         'https://task-hive-c4xu2y521-basitalilabs-projects.vercel.app',
         'http://localhost:5173'
     ],
-    methods: ['GET','POST','PUT','DELETE','OPTIONS'],
     credentials: true
 }));
-
-// Handle preflight
-app.options('*', cors({
-    origin: [
-        'https://task-hive-c4xu2y521-basitalilabs-projects.vercel.app',
-        'http://localhost:5173'
-    ],
-    credentials: true
-}));
-
 
 app.use(express.json());
 app.use(helmet());
