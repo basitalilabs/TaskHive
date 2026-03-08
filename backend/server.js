@@ -30,9 +30,7 @@ app.use(cors({
     credentials: true
 }));
 
-app.use(cors({
-    origin: '*'
-}));
+app.options('*', cors());
 
 app.use(express.json());
 app.use(helmet());
