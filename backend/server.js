@@ -23,10 +23,16 @@ const limiter = rateLimit({
 
 app.use(cors({
     origin: [
+        'https://task-hive-zeta.vercel.app/register',
         'https://task-hive-c4xu2y521-basitalilabs-projects.vercel.app',
         'http://localhost:5173'
     ],
     credentials: true
+}));
+
+app.use(cors({
+    origin: '*',
+    credentials: false
 }));
 
 app.use(express.json());
