@@ -1,40 +1,25 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const cors = require('cors');
 const connectDB = require('./config/db');
 const taskRoutes = require("./routes/taskRoutes");
 const authRoutes = require("./routes/authRoutes");
-const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
 
 dotenv.config();
 connectDB();
 
 const app = express();
 
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 100,
-    message: {
-        success: false,
-        message: "Too many requests, please try again later"
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    if(req.method === 'OPTIONS'){
+        return res.status(200).end();
     }
+    next();
 });
 
-app.use(cors({
-    origin: [
-        'https://task-hive-zeta.vercel.app/register',
-        'https://task-hive-c4xu2y521-basitalilabs-projects.vercel.app',
-        'http://localhost:5173'
-    ],
-    credentials: true
-}));
-
-app.options('*', cors());
-
 app.use(express.json());
-app.use(helmet({crossOriginResourcePolicy: false }));
-app.use(limiter);
 
 app.get("/", (req, res) => {
     res.send("Welcome to TaskHive API");
