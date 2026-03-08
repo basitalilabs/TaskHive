@@ -33,7 +33,7 @@ app.use(cors({
 app.options('*', cors());
 
 app.use(express.json());
-app.use(helmet());
+app.use(helmet({crossOriginResourcePolicy: false }));
 app.use(limiter);
 
 app.get("/", (req, res) => {
