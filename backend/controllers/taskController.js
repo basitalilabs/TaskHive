@@ -2,7 +2,11 @@ const Task = require('../models/Task');
 const asyncHandler = require("../middleware/asyncHandler");
 
 const getTask = asyncHandler(async(req, res)=>{
-    const task = await Task.find({userId : req.user._id});
+    const search = req.query.search || "";
+    const task = await Task.find({
+        userId : req.user._id,
+        title : { $regex : search, $options : "i"}
+    })
     res.status(200).json(task)
 })
 

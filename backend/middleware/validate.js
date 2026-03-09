@@ -3,7 +3,9 @@ const Joi = require("joi");
 const taskValidation = Joi.object({
     title : Joi.string().required().min(3).trim(),
     description : Joi.string().optional().allow(''),
-    status : Joi.string().valid("pending", "complete").optional()
+    status : Joi.string().valid("pending", "complete").optional(),
+    dueDate : Joi.date().optional().allow(null),
+    priority : Joi.string().valid("low", "medium", "high").optional()
 });
 
 const registerValidation = Joi.object({
