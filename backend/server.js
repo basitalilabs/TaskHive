@@ -29,7 +29,7 @@ app.use(cors({
     credentials: true
 }));
 
-app.use(express.json());
+app.use(express.json()); 
 app.use(helmet());
 app.use(limiter);
 
