@@ -22,7 +22,10 @@ const limiter = rateLimit({
 });
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: [
+        'https://task-hive-seven.vercel.app',
+        'http://localhost:5173'
+    ],
     credentials: true
 }));
 
