@@ -78,7 +78,10 @@ const Dashboard = () => {
 
         {/* Search Bar */}
         <SearchBar search={search} onSearch={setSearch} />
-        
+        {/* Show Task Count*/}
+        <div className="text-sm text-gray-600 mb-4 bg-white px-4 py-2 rounded-lg shadow-sm">
+            📋 You have <span className="font-bold text-blue-600">{tasks.length}</span> task(s)
+        </div>
         {/* Filter Bar */}
         <FilterBar filters={filters} onFilterChange={setFilters} />
 
